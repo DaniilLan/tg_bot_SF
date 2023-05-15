@@ -31,7 +31,7 @@ class Exchange:
         response = requests.get(f"https://min-api.cryptocompare.com/data/price?fsym={val1.upper()}&tsyms={val2.upper()}")
         response = response.content
         ex_info = json.loads(response)
-        result = round(ex_info[val2.upper()] * float(quantity), 3)
+        result = round(ex_info[val2.upper()] * float(quantity), 8)
         return result
 
 
