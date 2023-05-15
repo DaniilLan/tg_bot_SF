@@ -58,7 +58,11 @@ def func_ex(message):
                 val2 = list_ex[2]
                 quantity = list_ex[3]
                 value = Exchange.get_exchange(val1, val2, quantity)
-                bot.reply_to(message, f"Цена {quantity} {val1.upper()} = {value} {val2.upper()}")
+                if float(value) < 0.0001:
+                    value = '{:.8f}'.format(float(value)).rstrip('0').rstrip('.') # rstrip() генйи - кто придумал !
+                    bot.reply_to(message, f"Цена {quantity} {val1.upper()} = {value} {val2.upper()}")
+                else:
+                    bot.reply_to(message, f"Цена {quantity} {val1.upper()} = {value} {val2.upper()}")
             else:
                 text_error = ("Ошибка в написании команды конвертации валюты."
                               "\nПроверьте корректность введённой формы.")
